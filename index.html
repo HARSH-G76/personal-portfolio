@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<title>Harsh Chauhan — Web Developer | Anonymous Hacker Portfolio</title>
+<meta name="description" content="Portfolio of Harsh Chauhan — Web Developer, aspiring Software Engineer, BCA student at WCTM Gurugram. Projects, skills, certificates, interactive terminal and AI assistant." />
+<meta name="author" content="Harsh Chauhan" />
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Harsh Chauhan — Web Developer Portfolio" />
+<meta property="og:description" content="Anonymous hacker + Linux/KDE-style portfolio OS in the browser. Projects, skills, terminal, AI assistant." />
+<meta property="og:image" content="assets/photo/og-image.png" />
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Harsh Chauhan — Web Developer Portfolio" />
+<meta name="twitter:description" content="Anonymous hacker + Linux/KDE-style portfolio OS in the browser." />
+<!-- Favicon: inline SVG "HC" -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000'/%3E%3Ctext x='50' y='68' font-family='monospace' font-size='52' fill='%2300ff41' text-anchor='middle' style='text-shadow:0 0 10px %2300ff41'%3EHC%3C/text%3E%3C/svg%3E" />
+<!-- Google Fonts: Share Tech Mono + JetBrains Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Share+Tech+Mono&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet" />
+<!-- Font Awesome icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- BOOT SCREEN / LOADER                                          -->
+<!-- ============================================================ -->
+<div id="boot-screen" class="boot-screen">
+  <div class="boot-logo" aria-hidden="true">&gt;_ HARSH CHAUHAN</div>
+  <div id="boot-log" class="boot-log" aria-live="polite"></div>
+  <div class="boot-bar-wrap">
+    <div id="boot-bar" class="boot-bar"></div>
+  </div>
+  <button id="boot-skip" class="boot-skip">[ SKIP ]</button>
+</div>
+
+<!-- ============================================================ -->
+<!-- ACCESS GRANTED EASTER EGG OVERLAY                             -->
+<!-- ============================================================ -->
+<div id="anon-overlay" class="anon-overlay" aria-hidden="true">
+  <canvas id="anon-canvas"></canvas>
+  <div class="anon-text">
+    <h1 class="glitch-large" data-text="ACCESS GRANTED">ACCESS GRANTED</h1>
+    <p class="anon-sub">You are now Anonymous.</p>
+    <p class="anon-mantra">We are Legion. We do not forgive. We do not forget. Expect us.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MATRIX RAIN CANVAS (background)                               -->
+<!-- ============================================================ -->
+<canvas id="matrix-canvas" class="matrix-canvas" aria-hidden="true"></canvas>
+
+<!-- ============================================================ -->
+<!-- CRT SCANLINES / FLICKER / VIGNETTE OVERLAYS                   -->
+<!-- ============================================================ -->
+<div id="crt-overlay" class="crt-overlay" aria-hidden="true">
+  <div class="crt-scanlines"></div>
+  <div class="crt-flicker"></div>
+  <div class="crt-vignette"></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- DESKTOP                                                       -->
+<!-- ============================================================ -->
+<div id="desktop" class="desktop" role="application" aria-label="Harsh Chauhan Portfolio Desktop">
+
+  <!-- ===== TOP PANEL / MENU BAR ===== -->
+  <header id="top-panel" class="top-panel" role="banner">
+    <div class="top-panel-left">
+      <span class="panel-logo" title="HC_OS">HC</span>
+      <span class="panel-sep">|</span>
+      <span id="active-window-title" class="panel-active-title">Desktop</span>
+    </div>
+    <div class="top-panel-right">
+      <button id="effects-toggle-btn" class="panel-icon-btn" title="Toggle CRT effects" aria-label="Toggle CRT effects">
+        <i class="fa-solid fa-tv" aria-hidden="true"></i>
+      </button>
+      <button id="sound-toggle-btn" class="panel-icon-btn" title="Toggle sound" aria-label="Toggle sound">
+        <i class="fa-solid fa-volume-xmark" aria-hidden="true"></i>
+      </button>
+      <span class="panel-visitor" title="Visitor count"><i class="fa-solid fa-eye" aria-hidden="true"></i> <span id="visitor-count">1</span></span>
+      <button id="theme-toggle-btn" class="panel-icon-btn theme-toggle" title="Toggle theme" aria-label="Toggle dark/light theme">
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+      </button>
+      <span id="panel-clock" class="panel-clock" aria-live="off">00:00</span>
+      <span id="panel-date" class="panel-date"></span>
+    </div>
+  </header>
+
+  <!-- ===== DESKTOP ICONS (left) ===== -->
+  <nav id="desktop-icons" class="desktop-icons" aria-label="Desktop icons">
+    <button class="desktop-icon" data-open="about" aria-label="Open About">
+      <span class="di-icon"><i class="fa-solid fa-user-secret" aria-hidden="true"></i></span>
+      <span class="di-label">About.exe</span>
+    </button>
+    <button class="desktop-icon" data-open="projects" aria-label="Open Projects">
+      <span class="di-icon"><i class="fa-solid fa-folder" aria-hidden="true"></i></span>
+      <span class="di-label">Projects/</span>
+    </button>
+    <button class="desktop-icon" data-open="terminal" aria-label="Open Terminal">
+      <span class="di-icon"><i class="fa-solid fa-terminal" aria-hidden="true"></i></span>
+      <span class="di-label">Terminal</span>
+    </button>
+    <button class="desktop-icon" data-open="resume" aria-label="Open Resume">
+      <span class="di-icon"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span>
+      <span class="di-label">Resume.pdf</span>
+    </button>
+  </nav>
+
+  <!-- ===== HERO SECTION (on desktop) ===== -->
+  <section id="hero" class="hero" aria-label="Hero">
+    <div class="hero-mask-wrap">
+      <!-- Anonymous Guy Fawkes mask via SVG -->
+      <img src="assets/mask.png" class="hero-mask" alt="Anonymous mask">
+    </div>
+    <div class="hero-content">
+      <div id="hero-whoami" class="hero-whoami"></div>
+      <h1 id="hero-name" class="hero-name glitch" data-text="HARSH CHAUHAN">HARSH CHAUHAN</h1>
+      <div id="hero-typewriter" class="hero-typewriter"><span id="tw-text"></span><span id="tw-cursor" class="tw-cursor">&#9608;</span></div>
+      <div class="hero-cta">
+        <button class="btn-primary" data-open="projects"><i class="fa-solid fa-code" aria-hidden="true"></i> View Projects</button>
+        <a class="btn-secondary" href="assets/resume.pdf" download><i class="fa-solid fa-download" aria-hidden="true"></i> Download Resume</a>
+      </div>
+      <div class="hero-social">
+        <a href="https://github.com/HARSH-G76" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/harsh-chauhan-14568a407/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+        <a href="https://www.youtube.com/@HRXUG76" target="_blank" rel="noopener" aria-label="YouTube 1"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+        <a href="https://www.youtube.com/@hrharshyt76" target="_blank" rel="noopener" aria-label="YouTube 2"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+        <a href="mailto:harshchauhan.bca@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WINDOWS CONTAINER ===== -->
+  <div id="windows-layer" class="windows-layer"></div>
+
+  <!-- ===== BOTTOM DOCK (macOS-style) ===== -->
+  <nav id="dock" class="dock" role="navigation" aria-label="Dock">
+    <button class="dock-item" data-open="about" title="About" aria-label="Open About">
+      <i class="fa-solid fa-user-secret" aria-hidden="true"></i><span class="dock-label">About</span>
+    </button>
+    <button class="dock-item" data-open="skills" title="Skills" aria-label="Open Skills">
+      <i class="fa-solid fa-chart-simple" aria-hidden="true"></i><span class="dock-label">Skills</span>
+    </button>
+    <button class="dock-item" data-open="projects" title="Projects" aria-label="Open Projects">
+      <i class="fa-solid fa-folder-open" aria-hidden="true"></i><span class="dock-label">Projects</span>
+    </button>
+    <button class="dock-item" data-open="experience" title="Experience" aria-label="Open Experience">
+      <i class="fa-solid fa-briefcase" aria-hidden="true"></i><span class="dock-label">Experience</span>
+    </button>
+    <button class="dock-item" data-open="certificates" title="Certificates" aria-label="Open Certificates">
+      <i class="fa-solid fa-award" aria-hidden="true"></i><span class="dock-label">Certificates</span>
+    </button>
+    <button class="dock-item" data-open="resume" title="Resume" aria-label="Open Resume">
+      <i class="fa-solid fa-file-lines" aria-hidden="true"></i><span class="dock-label">Resume</span>
+    </button>
+    <button class="dock-item" data-open="terminal" title="Terminal" aria-label="Open Terminal">
+      <i class="fa-solid fa-terminal" aria-hidden="true"></i><span class="dock-label">Terminal</span>
+    </button>
+    <button class="dock-item" data-open="askai" title="Ask AI" aria-label="Open Ask AI">
+      <i class="fa-solid fa-robot" aria-hidden="true"></i><span class="dock-label">Ask AI</span>
+    </button>
+    <button class="dock-item" data-open="blog" title="Blog" aria-label="Open Blog">
+      <i class="fa-solid fa-newspaper" aria-hidden="true"></i><span class="dock-label">Blog</span>
+    </button>
+    <button class="dock-item" data-open="contact" title="Contact" aria-label="Open Contact">
+      <i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i><span class="dock-label">Contact</span>
+    </button>
+  </nav>
+
+  <!-- ===== MOBILE NAV (bottom) ===== -->
+  <nav id="mobile-nav" class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <button data-open="about"><i class="fa-solid fa-user-secret" aria-hidden="true"></i><span>About</span></button>
+    <button data-open="skills"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i><span>Skills</span></button>
+    <button data-open="projects"><i class="fa-solid fa-folder-open" aria-hidden="true"></i><span>Projects</span></button>
+    <button data-open="terminal"><i class="fa-solid fa-terminal" aria-hidden="true"></i><span>Terminal</span></button>
+    <button data-open="contact"><i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i><span>Contact</span></button>
+    <button id="mobile-more" class="mobile-more" aria-label="More apps"><i class="fa-solid fa-grid-2" aria-hidden="true"></i><span>More</span></button>
+  </nav>
+
+  <!-- ===== MOBILE MORE MENU ===== -->
+  <div id="mobile-more-menu" class="mobile-more-menu" hidden>
+    <button data-open="experience"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Experience</button>
+    <button data-open="certificates"><i class="fa-solid fa-award" aria-hidden="true"></i> Certificates</button>
+    <button data-open="resume"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Resume</button>
+    <button data-open="askai"><i class="fa-solid fa-robot" aria-hidden="true"></i> Ask AI</button>
+    <button data-open="blog"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> Blog</button>
+  </div>
+</div>
+
+<!-- ===== COMMAND PALETTE (Ctrl+K) ===== -->
+<div id="cmd-palette" class="cmd-palette" hidden>
+  <div class="cmd-palette-inner">
+    <input id="cmd-input" type="text" placeholder="Search windows & actions..." aria-label="Command palette" />
+    <ul id="cmd-list" class="cmd-list" role="listbox"></ul>
+  </div>
+</div>
+
+<!-- ===== LIGHTBOX (for certificates) ===== -->
+<div id="lightbox" class="lightbox" hidden aria-hidden="true">
+  <button id="lb-close" class="lb-close" aria-label="Close lightbox"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+  <button id="lb-prev" class="lb-nav lb-prev" aria-label="Previous"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+  <img id="lb-image" src="" alt="Certificate preview" />
+  <button id="lb-next" class="lb-nav lb-next" aria-label="Next"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+  <p id="lb-caption" class="lb-caption"></p>
+</div>
+
+<!-- ===== BLOG MODAL ===== -->
+<div id="blog-modal" class="blog-modal" hidden aria-hidden="true">
+  <div class="blog-modal-inner">
+    <button id="blog-modal-close" class="lb-close" aria-label="Close article"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    <article id="blog-modal-body"></article>
+  </div>
+</div>
+
+<!-- ===== PROJECT DETAIL MODAL ===== -->
+<div id="project-modal" class="project-modal" hidden aria-hidden="true">
+  <div class="project-modal-inner">
+    <button id="project-modal-close" class="lb-close" aria-label="Close detail"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    <article id="project-modal-body"></article>
+  </div>
+</div>
+
+<!-- ===== CURSOR TRAIL (desktop) ===== -->
+
+
+<!-- ===== MOBILE SCROLL PROGRESS ===== -->
+<div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
+
+<script src="script.js" defer></script>
+</body>
+</html>
